@@ -30,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-        {% for user in ulist %}
+        {% for user in userlist %}
             <tr>
             <td>{{ user['username'] }}</td>
             <td><a href="{{ url_for('userProfile', userid=user['userid']) }}">{{ user['userid'] }}</a></td>

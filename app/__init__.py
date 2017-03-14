@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 # Config Values
 # location where file uploads will be stored
-UPLOAD_FOLDER = './app/static/uploads'
+UPLOAD_FOLDER = 'app/static/uploads'
 
 
 

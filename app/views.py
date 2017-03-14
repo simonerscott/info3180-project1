@@ -35,21 +35,24 @@ def about():
 
 
 @app.route("/profile", methods = ["GET", "POST"])
-def aprofile():
+def profile():
     
     file_folder = app.config["UPLOAD_FOLDER"]
     form = NewUser()
     
-    if request.method == 'POST' and form.validate_on_submit():
-        firstname = request.form["firstname"]
+    
+    if request.method == "POST" and form.validate_on_submit():
+        
+        firstname = request.form['firstname']
         lastname = request.form["lastname"]
         username = request.form["username"]
         age = request.form["age"]
         bio = request.form["bio"]
         gender = request.form["gender"]
         image = request.files['img']
-        date = time.strftime('%Y/%b/%d')
+        created_on = time.strftime('%Y/%b/%d')
         
+        print "test"
         
         while True:
             userid = random.randint(620000000, 629999999) 
@@ -57,38 +60,30 @@ def aprofile():
                 break
         
         
-        ##file = request.files['file']
-       ### filename = secure_filename(file.filename)
+        #file = request.files['file']
+        filename = secure_filename(image.filename)
         #os.rename(secure_filename(file.filename), id)
         
-        filename = "{}-{}".format(userid,secure_filename(image.filename))
-        filepath = "app/static/uploads/{}".format(filename)
-        image.save(filepath)
+        # filename = "{}-{}".format(userid, secure_filename(image.filename))
+        # filepath = file_folder.format(filename)
+        # image.save(filepath)
         
-        user = UserProfile(str(userid), firstname, lastname, username, age, bio, gender, date, filename)
+        user = UserProfile(userid, username, firstname, lastname, age, gender, filename, bio, created_on)
         db.session.add(user)
         db.session.commit()
             
-        #file.save(os.path.join(file_folder, filename))
+        image.save(os.path.join(file_folder, filename))
         
-          
-        
-        flash("User Added!", category='success')
-        return redirect(url_for("profiles")) #profiles is where it will display all the users
-        
-        # submiting to the db, validate info(if not ask user to fix errors), submit to the db then upload photo to the upload
-    else:
-        return render_template("profile.html")
+        flash("User Added!", category = 'success')
+        return redirect(url_for('profile')) #profiles is where it will display all the users
+    
+    flash_errors(form)
+    return render_template('profile.html', form = form)
 
 
 
 @app.route("/profile/<int:userid>", methods = ["GET", "POST"])
 def userProfile(userid):
-    # UserProfile.query.filter_by(username = userid).all()
-    ##f request.method == "POST":
-    ##    return "something"
-    ##else:
-       ## return "something else"
     user = db.session.query(UserProfile).filter(UserProfile.userid == str(userid)).first()
     if not user:
         flash("Cannot Find User", category = "danger")
@@ -105,11 +100,6 @@ def userProfile(userid):
 
 
 @app.route("/profiles", methods = ["GET", "POST"])
-##    if request.methos == "POST":
-  ##      return render_template('profiles.html', users = db.session.query(UserProfile).query.all() )
-  ##  else:
-  ##      return "something else"
-        
 def profiles():
     """View a list of profiles"""
     userlist   = []
@@ -122,7 +112,14 @@ def profiles():
         
    
    
-   
+# Flash errors from the form if validation fails
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ))   
         
 
 ###

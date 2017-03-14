@@ -23,49 +23,48 @@
 
 <div>
     
-    <form action = "{{ url_for('profiles') }}" method = "POST">
+    <form action = "{{ url_for('profile') }}" method = "POST" enctype = "multipart/form-data">
+        {{ form.csrf_token }}
         
         <div>
-               <label for = "firstname" class = "small"> First Name  </label> <em> (Required) </em>
+               {{ form.firstname.label }} <em> (Required) </em>
                <p class = "small"> Please Enter Your First Name. </p>
-               <input type = "text" id = "firstname" name = "firstname"/>
+               {{ form.firstname }}
         </div> <br/>
         
         <div>
-               <label for = "lastname" class = "small"> Last Name  </label> <em> (Required) </em>
+               {{ form.lastname.label }} <em> (Required) </em>
                <p class = "small"> Please Enter Your Last Name. </p>
-               <input type = "text" id = "lastname" name = "lastname"/>
+               {{ form.lastname }}
         </div> <br/>
         
         <div>
-               <label for = "username" class = "small"> Username  </label> <em> (Required) </em>
+               {{ form.username.label }} <em> (Required) </em>
                <p class = "small"> Please Enter Your Username. </p>
-               <input type = "text" id = "username" name = "username"/>
+               {{ form.username }}
         </div> <br/>
         
         <div>
-               <label for = "age" class = "small"> Age  </label> <em> (Required) </em>
+               {{ form.age.label }} <em> (Required) </em>
                <p class = "small"> Please Enter Your Age. </p>
-               <input type = "number" id = "age" name = "age"/>
+               {{ form.age }}
         </div> <br/>
         
         <div>
-               <label for = "biography" class = "small"> Biography </label> <em> (Required) </em>
+               {{ form.bio.label }} <em> (Required) </em>
                <p class = "small"> Please Enter Your Biography. </p>
-               <textarea name = "bio" cols = "25" row = "5"> </textarea>
+               {{ form.bio }}
         </div> <br/>
         
         <div>
-               <label for = "gender" class = "small"> Gender  </label> <em> (Required) </em>
+               {{ form.gender.label }} <em> (Required) </em>
                <p class = "small"> Please Enter Your Gender. </p>
-               <input type = "radio" name = "gender" value = "male"> Male<br>
-               <input type = "radio" name = "gender" value = "female"> Female<br>
-               <input type = "radio" name = "gender" value = "other"> Other<br><br>
+               {{ form.gender }}
         </div> <br/>
         
         <div>
-            <label for = "file"> Upload Your Picture </label>
-            <input type = "file" name = "file" class = "form-control" />
+            {{ form.img.label }}
+            {{ form.img }}
         </div> <br/> <br/>
         
          <button type = "submit"> Sumbit </button>
