@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<!--<h1 class="page-header">User Profile</h1>-->
+
+
+<img src = "{{ url_for('static', filename = 'uploads/' + jpg ) }}" width="250" height="250" ></img>
+
+
+<div>
+    <h3> {{firstname}} {{lastname}} </h3>
+     <p> <strong>  Profile Created On: </strong> {created_on}} </p> <br> 
+     <p> <strong>  Username: </strong> {{username}} </p> 
+     <p> <strong>  User ID: </strong> {{userid}} </p> 
+     <p> <strong>  Gender: </strong> {{gender}} </p> 
+     <p> <strong>  Age: </strong> {{age}} </p> <br><br> 
+     <p> {{bio}} </p> 
+</div>
+
+{% endblock %}
+
