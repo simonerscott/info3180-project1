@@ -16,4 +16,4 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True # added just to suppress a w
 
 db = SQLAlchemy(app)
 app.config.from_object(__name__)
-from app import views
+from app import views, models

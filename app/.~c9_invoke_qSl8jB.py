@@ -56,7 +56,7 @@ def aprofile():
             if not db.session.query(exists().where(UserProfile.userid == str(userid))).scalar():
                 break
         
-        
+        ##file = request.files['file']
         ##file = request.files['file']
        ### filename = secure_filename(file.filename)
         #os.rename(secure_filename(file.filename), id)
@@ -82,7 +82,7 @@ def aprofile():
 
 
 
-@app.route("/profile/<int:userid>", methods = ["GET", "POST"])
+@app.route("/profile/<iuserid>", methods = ["GET", "POST"])
 def userProfile(userid):
     # UserProfile.query.filter_by(username = userid).all()
     ##f request.method == "POST":

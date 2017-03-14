@@ -1,32 +1,12 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#"> Welcome</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
             <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <!--<li><a href="{{ url_for('secure_page') }}">Secure Page</a></li>-->
-          </ul>
-
-          <!--<ul class="nav navbar-nav navbar-right">-->
-          <!--  <li class="active"><a href="{{ url_for('login') }}">Login</a></li>-->
-          <!--</ul>-->
-          
-          <ul class="nav navbar-nav navbar-right">
-            {% if current_user.is_authenticated %}
-              <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            {% else %}
-              <li><a href="{{ url_for('login') }}">Login</a></li>
-            {% endif %}
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+            <li><a href="{{ url_for('aprofile') }}">Create A Profile</a></li>
+            <li><a href="{{ url_for('profiles') }}"> View Profiles</a></li>
+        </ul>
+    </div>
 </nav>

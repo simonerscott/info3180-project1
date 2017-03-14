@@ -82,7 +82,7 @@ def aprofile():
 
 
 
-@app.route("/profile/<int:userid>", methods = ["GET", "POST"])
+@app.route("/profile/<iuserid>", methods = ["GET", "POST"])
 def userProfile(userid):
     # UserProfile.query.filter_by(username = userid).all()
     ##f request.method == "POST":
