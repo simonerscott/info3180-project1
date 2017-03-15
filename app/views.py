@@ -55,23 +55,21 @@ def profile():
         print "test"
         
         while True:
-            userid = random.randint(620000000, 629999999) 
+            userid = random.randint(620000000, 620099999) 
             if not db.session.query(exists().where(UserProfile.userid == str(userid))).scalar():
                 break
         
-        
-        #file = request.files['file']
+        #getting the file name
         filename = secure_filename(image.filename)
-        #os.rename(secure_filename(file.filename), id)
-        
-        # filename = "{}-{}".format(userid, secure_filename(image.filename))
-        # filepath = file_folder.format(filename)
-        # image.save(filepath)
-        
+        #renaming the file name by adding the user id to the file name
+        filename = "{}-{}".format(userid, filename)
+       
+        #getting the data that was entered from the form. Then adding and commiting it to the db
         user = UserProfile(userid, username, firstname, lastname, age, gender, filename, bio, created_on)
         db.session.add(user)
         db.session.commit()
-            
+        
+        #saving the file to the the uploads folder
         image.save(os.path.join(file_folder, filename))
         
         flash("User Added!", category = 'success')
@@ -91,7 +89,7 @@ def userProfile(userid):
         if request.headers.get('content-type') == 'application/json' or request.method == 'POST':
             return jsonify(userid = user.userid, username = user.username, image = user.image, gender = user.gender, age = user.age,\
                           created_on = user.created_on)
-        return render_template('profile.html', user = user)
+        return render_template('userprofile.html', user = user)
     return redirect(url_for('profiles'))
     
     

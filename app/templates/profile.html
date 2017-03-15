@@ -8,17 +8,7 @@
 <h3> Profile </h3> <hr>
 
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class="alert alert-success">
-      <ul class="flashes">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-{% endwith %}
+{% include 'flash_messages.html' %}
 
 
 <div>
